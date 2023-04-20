@@ -150,3 +150,12 @@ const (
 	IPROTO_RAFT_LEADER_ID      RaftKey = 4
 	IPROTO_RAFT_IS_LEADER_SEEN RaftKey = 5
 )
+
+// IPROTO SQL info key constants, generated from
+// tarantool/src/box/execute.h
+type SqlInfoKey int
+
+const (
+	SQL_INFO_ROW_COUNT         SqlInfoKey = 0
+	SQL_INFO_AUTOINCREMENT_IDS SqlInfoKey = 1
+)
