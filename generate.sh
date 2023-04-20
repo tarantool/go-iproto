@@ -23,6 +23,7 @@ cd ..
 
 SRC_CONST=${TT_DIR}/src/box/iproto_constants.h
 SRC_ERRORS=${TT_DIR}/src/box/errcode.h
+SRC_EXECUTE=${TT_DIR}/src/box/execute.h
 SRC_FEATURES=${TT_DIR}/src/box/iproto_features.h
 DST_DOC=doc.go
 DST_ERRORS=error.go
@@ -293,6 +294,15 @@ EOF
 read_enum iproto_raft_keys ${SRC_CONST} | \
 	generate_enum RaftKey >> ${DST_KEYS}
 
+cat << EOF >> ${DST_KEYS}
+
+// IPROTO SQL info key constants, generated from
+// ${SRC_EXECUTE}
+EOF
+
+read_enum sql_info_key ${SRC_EXECUTE} | \
+	generate_enum SqlInfoKey >> ${DST_KEYS}
+
 echo "${FOOTER_TEST}" > ${DST_KEYS_TEST}
 
 read_enum iproto_key ${SRC_CONST} | \
@@ -306,6 +316,9 @@ read_enum iproto_ballot_key ${SRC_CONST} | \
 
 read_enum iproto_raft_keys ${SRC_CONST} | \
 	generate_test RaftKey >> ${DST_KEYS_TEST}
+
+read_enum sql_info_key ${SRC_EXECUTE} | \
+	generate_test SqlInfoKey >> ${DST_KEYS_TEST}
 
 #
 # Cleanup.

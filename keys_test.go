@@ -168,3 +168,26 @@ func TestRaftKey(t *testing.T) {
 		})
 	}
 }
+
+func TestSqlInfoKey(t *testing.T) {
+	cases := []struct {
+		SqlInfoKey iproto.SqlInfoKey
+		Str        string
+		Val        int
+	}{
+
+		{iproto.SQL_INFO_ROW_COUNT, "SQL_INFO_ROW_COUNT", 0},
+		{iproto.SQL_INFO_AUTOINCREMENT_IDS, "SQL_INFO_AUTOINCREMENT_IDS", 1},
+	}
+
+	for _, tc := range cases {
+		t.Run(tc.Str, func(t *testing.T) {
+			if tc.SqlInfoKey.String() != tc.Str {
+				t.Errorf("Got %s, expected %s", tc.SqlInfoKey.String(), tc.Str)
+			}
+			if int(tc.SqlInfoKey) != tc.Val {
+				t.Errorf("Got %d, expected %d", tc.SqlInfoKey, tc.Val)
+			}
+		})
+	}
+}
