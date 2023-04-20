@@ -25,6 +25,7 @@ SRC_CONST=${TT_DIR}/src/box/iproto_constants.h
 SRC_ERRORS=${TT_DIR}/src/box/errcode.h
 SRC_EXECUTE=${TT_DIR}/src/box/execute.h
 SRC_FEATURES=${TT_DIR}/src/box/iproto_features.h
+SRC_ITERATORS=${TT_DIR}/src/box/iterator_type.h
 DST_DOC=doc.go
 DST_ERRORS=error.go
 DST_ERRORS_TEST=error_test.go
@@ -32,6 +33,8 @@ DST_FEATURES=feature.go
 DST_FEATURES_TEST=feature_test.go
 DST_FLAGS=flag.go
 DST_FLAGS_TEST=flag_test.go
+DST_ITERATORS=iterator.go
+DST_ITERATORS_TEST=iterator_test.go
 DST_TYPES=type.go
 DST_TYPES_TEST=type_test.go
 DST_KEYS=keys.go
@@ -235,6 +238,24 @@ echo "${FOOTER_TEST}" > ${DST_FLAGS_TEST}
 
 grep -PB 1 "[\t ]*IPROTO_FLAG_[A-Z_]+ =" ${SRC_CONST} | \
 	generate_test Flag >> ${DST_FLAGS_TEST}
+
+#
+# Iterators.
+#
+
+echo "${FOOTER}" > ${DST_ITERATORS}
+cat << EOF >> ${DST_ITERATORS}
+// IPROTO iterators constants, generated from
+// ${SRC_ITERATORS}
+EOF
+
+read_enum iterator_type ${SRC_ITERATORS} | \
+	generate_enum Iterator >> ${DST_ITERATORS}
+
+echo "${FOOTER_TEST}" > ${DST_ITERATORS_TEST}
+
+read_enum iterator_type ${SRC_ITERATORS} | \
+	generate_test Iterator >> ${DST_ITERATORS_TEST}
 
 #
 # Types.
