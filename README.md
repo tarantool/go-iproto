@@ -52,7 +52,7 @@ You can generate the code with commands:
 
 ```bash
 TT_TAG=master make
-TT_TAG=2.10.6 make
+TT_TAG=2.11.0 make
 TT_TAG=master TT_REPO=https://github.com/my/tarantool.git make
 ```
 

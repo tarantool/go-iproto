@@ -38,7 +38,7 @@ jobs:
 
     - run: make test
 
-  master-build:
+  build-target-tag:
     if: (github.event_name == 'push') ||
       (github.event_name == 'pull_request' &&
         github.event.pull_request.head.repo.full_name != github.repository) ||
@@ -58,7 +58,7 @@ jobs:
 
     - run: make deps
 
-    - run: TT_TAG=master make
+    - run: TT_TAG=2.11.0 make
 
   golangci-lint:
     if: (github.event_name == 'push') ||
