@@ -113,7 +113,7 @@ const (
 	ER_NO_SUCH_FUNCTION Error = 51
 	// "Function '%s' already exists"
 	ER_FUNCTION_EXISTS Error = 52
-	// "Invalid return value of space:before_replace trigger: expected tuple or nil, got %s"
+	// "Invalid return value of space:before_replace trigger: expected tuple or nil"
 	ER_BEFORE_REPLACE_RET Error = 53
 	// "Can not perform %s in a multi-statement transaction"
 	ER_MULTISTATEMENT_TRANSACTION Error = 54
@@ -353,7 +353,7 @@ const (
 	ER_SQL_TYPE_MISMATCH Error = 171
 	// "Rowid is overflowed: too many entries in ephemeral space"
 	ER_ROWID_OVERFLOW Error = 172
-	// "Can't drop collation %s : %s"
+	// "Can't drop collation '%s': %s"
 	ER_DROP_COLLATION Error = 173
 	// "Illegal mix of collations"
 	ER_ILLEGAL_COLLATION_MIX Error = 174
@@ -479,7 +479,7 @@ const (
 	ER_CREATE_CONSTRAINT Error = 234
 	// "Check constraint '%s' failed for field '%s'"
 	ER_FIELD_CONSTRAINT_FAILED Error = 235
-	// "Check constraint '%s' failed for tuple"
+	// "Check constraint '%s' failed for a tuple"
 	ER_TUPLE_CONSTRAINT_FAILED Error = 236
 	// "Failed to create foreign key '%s' in space '%s': %s"
 	ER_CREATE_FOREIGN_KEY Error = 237
@@ -503,8 +503,8 @@ const (
 	ER_INTERFERING_ELECTIONS Error = 246
 	// "Iterator position is invalid"
 	ER_ITERATOR_POSITION Error = 247
-	// ""
-	ER_UNUSED Error = 248
+	// "Type of the default value does not match tuple field %s type: expected %s, got %s"
+	ER_DEFAULT_VALUE_TYPE Error = 248
 	// "Unknown authentication method '%s'"
 	ER_UNKNOWN_AUTH_METHOD Error = 249
 	// "Invalid '%s' data: %s"
@@ -541,4 +541,24 @@ const (
 	ER_WRONG_FUNCTION_OPTIONS Error = 265
 	// "Snapshot has no system spaces"
 	ER_MISSING_SYSTEM_SPACES Error = 266
+	// "Cluster name mismatch: name '%s' provided in config confilcts with the instance one '%s'"
+	ER_CLUSTER_NAME_MISMATCH Error = 267
+	// "Replicaset name mismatch: name '%s' provided in config confilcts with the instance one '%s'"
+	ER_REPLICASET_NAME_MISMATCH Error = 268
+	// "Duplicate replica name %s, already occupied by %s"
+	ER_INSTANCE_NAME_DUPLICATE Error = 269
+	// "Instance name mismatch: name '%s' provided in config confilcts with the instance one '%s'"
+	ER_INSTANCE_NAME_MISMATCH Error = 270
+	// "Your schema version is %u.%u.%u while Tarantool %s requires a more recent schema version. Please, consider using box.schema.upgrade()."
+	ER_SCHEMA_NEEDS_UPGRADE Error = 271
+	// "Schema upgrade is already in progress"
+	ER_SCHEMA_UPGRADE_IN_PROGRESS Error = 272
+	// "%s is deprecated"
+	ER_DEPRECATED Error = 273
+	// "Please call box.cfg{} first"
+	ER_UNCONFIGURED Error = 274
+	// "Failed to create field default function '%s': %s"
+	ER_CREATE_DEFAULT_FUNC Error = 275
+	// "Error calling field default function '%s': %s"
+	ER_DEFAULT_FUNC_FAILED Error = 276
 )

@@ -29,4 +29,12 @@ const (
 	// IPROTO_AFTER_POSITION, IPROTO_AFTER_TUPLE, IPROTO_FETCH_POSITION
 	// request fields and IPROTO_POSITION response field.
 	IPROTO_FEATURE_PAGINATION Feature = 4
+	// Using space [index] names instead of identifiers support:
+	// IPROTO_SPACE_NAME and IPROTO_INDEX_NAME fields in IPROTO_SELECT,
+	// IPROTO_UPDATE and IPROTO_DELETE request body;
+	// IPROTO_SPACE_NAME field in IPROTO_INSERT, IPROTO_REPLACE,
+	// IPROTO_UPDATE and IPROTO_UPSERT request body.
+	IPROTO_FEATURE_SPACE_AND_INDEX_NAMES Feature = 5
+	// IPROTO_WATCH_ONCE request support.
+	IPROTO_FEATURE_WATCH_ONCE Feature = 6
 )

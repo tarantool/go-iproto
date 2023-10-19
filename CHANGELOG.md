@@ -9,8 +9,10 @@ Versioning](http://semver.org/spec/v2.0.0.html) except to the first release.
 ## [Unreleased]
 
 ### Added
+- Constants from Tarantool `v3` (#6).
 
 ### Changed
+- `ER_UNUSED` with error code 248 renamed to `ER_DEFAULT_VALUE_TYPE` (#6).
 
 ### Fixed
 

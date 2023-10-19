@@ -41,8 +41,7 @@ const (
 	IPROTO_COMMIT Type = 15
 	// Rollback transaction
 	IPROTO_ROLLBACK Type = 16
-	// The maximum typecode used for box.stat()
-	IPROTO_RAFT Type = 30
+	IPROTO_RAFT     Type = 30
 	// PROMOTE request.
 	IPROTO_RAFT_PROMOTE Type = 31
 	// DEMOTE request.
@@ -84,21 +83,32 @@ const (
 	//     it unsubscribes by sending an IPROTO_UNWATCH packet.
 	//
 	// All the three request types are fully asynchronous - a receiving end
-	// doesn't send a packet in reply to any of them (therefore neither of
-	// them has a sync number).
+	// doesn't send a packet in reply to any of them. Still, the server
+	// sends the same sync number in an IPROTO_EVENT packet as the one sent
+	// by the client in the last corresponding IPROTO_WATCH request.
 	IPROTO_WATCH   Type = 74
 	IPROTO_UNWATCH Type = 75
 	IPROTO_EVENT   Type = 76
+	// Synchronous request to fetch the data that is currently attached to
+	// a notification key without subscribing to changes.
+	IPROTO_WATCH_ONCE Type = 77
+	// The following three requests are reserved for vinyl types.
+	//
+	// VY_INDEX_RUN_INFO = 100
+	// VY_INDEX_PAGE_INFO = 101
+	// VY_RUN_ROW_INDEX = 102
+	// Non-final response type.
+	IPROTO_CHUNK Type = 128
+	// Error codes = (IPROTO_TYPE_ERROR | ER_XXX from errcode.h)
+	IPROTO_TYPE_ERROR Type = 1 << 15
+	// Used for overriding the unknown request handler
+	IPROTO_UNKNOWN Type = -1
+	// The maximum typecode used for box.stat()
+	IPROTO_TYPE_STAT_MAX Type = IPROTO_ROLLBACK + 1
 	// Vinyl run info stored in .index file
 	VY_INDEX_RUN_INFO Type = 100
 	// Vinyl page info stored in .index file
 	VY_INDEX_PAGE_INFO Type = 101
 	// Vinyl row index stored in .run file
 	VY_RUN_ROW_INDEX Type = 102
-	// Non-final response type.
-	IPROTO_CHUNK Type = 128
-	// Error codes = (IPROTO_TYPE_ERROR | ER_XXX from errcode.h)
-	IPROTO_TYPE_ERROR Type = 1 << 15
-	// Used for overriding the unknown request handler.
-	IPROTO_UNKNOWN Type = -1
 )
