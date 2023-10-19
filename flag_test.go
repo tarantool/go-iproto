@@ -15,9 +15,9 @@ func TestFlag(t *testing.T) {
 		Val  int
 	}{
 
-		{iproto.IPROTO_FLAG_COMMIT, "IPROTO_FLAG_COMMIT", 0x01},
-		{iproto.IPROTO_FLAG_WAIT_SYNC, "IPROTO_FLAG_WAIT_SYNC", 0x02},
-		{iproto.IPROTO_FLAG_WAIT_ACK, "IPROTO_FLAG_WAIT_ACK", 0x04},
+		{iproto.IPROTO_FLAG_COMMIT, "IPROTO_FLAG_COMMIT", 1 << 0},
+		{iproto.IPROTO_FLAG_WAIT_SYNC, "IPROTO_FLAG_WAIT_SYNC", 1 << 1},
+		{iproto.IPROTO_FLAG_WAIT_ACK, "IPROTO_FLAG_WAIT_ACK", 1 << 2},
 	}
 
 	for _, tc := range cases {

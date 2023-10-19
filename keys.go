@@ -43,8 +43,9 @@ const (
 	IPROTO_REPLICASET_UUID Key = 0x25
 	IPROTO_VCLOCK          Key = 0x26
 	// Also request keys. See the comment above.
-	IPROTO_EXPR       Key = 0x27 // EVAL
-	IPROTO_OPS        Key = 0x28 // UPSERT but not UPDATE ops, because of legacy
+	IPROTO_EXPR Key = 0x27
+	// UPSERT but not UPDATE ops, because of legacy
+	IPROTO_OPS        Key = 0x28
 	IPROTO_BALLOT     Key = 0x29
 	IPROTO_TUPLE_META Key = 0x2a
 	IPROTO_OPTIONS    Key = 0x2b
@@ -73,7 +74,7 @@ const (
 	IPROTO_SQL_TEXT Key = 0x40
 	IPROTO_SQL_BIND Key = 0x41
 	// IPROTO_SQL_INFO: {
-	//     SQL_INFO_ROW_COUNT: number
+	//      SQL_INFO_ROW_COUNT: number
 	// }
 	IPROTO_SQL_INFO Key = 0x42
 	IPROTO_STMT_ID  Key = 0x43
@@ -102,11 +103,17 @@ const (
 	// the server (value of box.cfg.auth_type). It's sent in reply
 	// to IPROTO_ID request. A client can use it as the default
 	// authentication method.
-	IPROTO_AUTH_TYPE Key = 0x5b
-	// Be careful to not extend iproto_key values over 0x7f.
-	// iproto_keys are encoded in msgpack as positive fixnum, which ends at
-	// 0x7f, and we rely on this in some places by allocating a uint8_t to
-	// hold a msgpack-encoded key value.
+	IPROTO_AUTH_TYPE       Key = 0x5b
+	IPROTO_REPLICASET_NAME Key = 0x5c
+	IPROTO_INSTANCE_NAME   Key = 0x5d
+	// Space name used instead of identifier (IPROTO_SPACE_ID) in DML
+	// requests. Preferred when identifier is present (i.e., the identifier
+	// is ignored).
+	IPROTO_SPACE_NAME Key = 0x5e
+	// Index name used instead of identifier (IPROTO_INDEX_ID) in
+	// IPROTO_SELECT, IPROTO_UPDATE, and IPROTO_DELETE requests. Preferred
+	// when identifier is present (i.e., the identifier is ignored).
+	IPROTO_INDEX_NAME Key = 0x5f
 )
 
 // IPROTO metadata key constants, generated from
@@ -136,6 +143,7 @@ const (
 	IPROTO_BALLOT_CAN_LEAD                 BallotKey = 0x07
 	IPROTO_BALLOT_BOOTSTRAP_LEADER_UUID    BallotKey = 0x08
 	IPROTO_BALLOT_REGISTERED_REPLICA_UUIDS BallotKey = 0x09
+	IPROTO_BALLOT_INSTANCE_NAME            BallotKey = 0x0a
 )
 
 // IPROTO raft key constants, generated from
