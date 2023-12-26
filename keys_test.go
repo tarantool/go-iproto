@@ -75,6 +75,8 @@ func TestKey(t *testing.T) {
 		{iproto.IPROTO_INSTANCE_NAME, "IPROTO_INSTANCE_NAME", 0x5d},
 		{iproto.IPROTO_SPACE_NAME, "IPROTO_SPACE_NAME", 0x5e},
 		{iproto.IPROTO_INDEX_NAME, "IPROTO_INDEX_NAME", 0x5f},
+		{iproto.IPROTO_TUPLE_FORMATS, "IPROTO_TUPLE_FORMATS", 0x60},
+		{iproto.IPROTO_IS_SYNC, "IPROTO_IS_SYNC", 0x61},
 	}
 
 	for _, tc := range cases {

@@ -37,4 +37,16 @@ const (
 	IPROTO_FEATURE_SPACE_AND_INDEX_NAMES Feature = 5
 	// IPROTO_WATCH_ONCE request support.
 	IPROTO_FEATURE_WATCH_ONCE Feature = 6
+	// Tuple format in DML request responses support:
+	// Tuples in IPROTO_DATA response field are encoded as MP_TUPLE and
+	// tuple format is sent in IPROTO_TUPLE_FORMATS field.
+	IPROTO_FEATURE_DML_TUPLE_EXTENSION Feature = 7
+	// Tuple format in call and eval request responses support:
+	// Tuples in IPROTO_DATA response field are encoded as MP_TUPLE and
+	// tuple formats are sent in IPROTO_TUPLE_FORMATS field.
+	IPROTO_FEATURE_CALL_RET_TUPLE_EXTENSION Feature = 8
+	// Tuple format in call and eval request arguments support:
+	// Tuples in IPROTO_TUPLE request field are encoded as MP_TUPLE and
+	// tuple formats are received in IPROTO_TUPLE_FORMATS field.
+	IPROTO_FEATURE_CALL_ARG_TUPLE_EXTENSION Feature = 9
 )

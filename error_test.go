@@ -290,6 +290,8 @@ func TestError(t *testing.T) {
 		{iproto.ER_UNCONFIGURED, "ER_UNCONFIGURED"},
 		{iproto.ER_CREATE_DEFAULT_FUNC, "ER_CREATE_DEFAULT_FUNC"},
 		{iproto.ER_DEFAULT_FUNC_FAILED, "ER_DEFAULT_FUNC_FAILED"},
+		{iproto.ER_INVALID_DEC, "ER_INVALID_DEC"},
+		{iproto.ER_IN_ANOTHER_PROMOTE, "ER_IN_ANOTHER_PROMOTE"},
 	}
 
 	for i, tc := range cases {
