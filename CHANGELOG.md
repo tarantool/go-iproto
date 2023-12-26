@@ -9,12 +9,22 @@ Versioning](http://semver.org/spec/v2.0.0.html) except to the first release.
 ## [Unreleased]
 
 ### Added
-- Constants from Tarantool `v3` (#6).
 
 ### Changed
-- `ER_UNUSED` with error code 248 renamed to `ER_DEFAULT_VALUE_TYPE` (#6).
 
 ### Fixed
+
+## [1.0.0] - 2023-12-27
+
+The first stable release exports IPROTO constants from Tarantool 3.0.0.
+
+### Added
+
+- Constants from Tarantool 3.0.0 (#4).
+
+### Changed
+
+- `ER_UNUSED` with error code 248 renamed to `ER_DEFAULT_VALUE_TYPE` (#4).
 
 ## [0.1.0] - 2023-06-01
 
