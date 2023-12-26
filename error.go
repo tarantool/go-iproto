@@ -561,4 +561,8 @@ const (
 	ER_CREATE_DEFAULT_FUNC Error = 275
 	// "Error calling field default function '%s': %s"
 	ER_DEFAULT_FUNC_FAILED Error = 276
+	// "Invalid decimal: '%s'"
+	ER_INVALID_DEC Error = 277
+	// "box.ctl.promote() is already running"
+	ER_IN_ANOTHER_PROMOTE Error = 278
 )

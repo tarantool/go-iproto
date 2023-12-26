@@ -114,6 +114,11 @@ const (
 	// IPROTO_SELECT, IPROTO_UPDATE, and IPROTO_DELETE requests. Preferred
 	// when identifier is present (i.e., the identifier is ignored).
 	IPROTO_INDEX_NAME Key = 0x5f
+	// Mapping of format identifier to format clause consisting of field
+	// names and field types.
+	IPROTO_TUPLE_FORMATS Key = 0x60
+	// Flag indicating whether the transaction is synchronous.
+	IPROTO_IS_SYNC Key = 0x61
 )
 
 // IPROTO metadata key constants, generated from
