@@ -12,6 +12,8 @@ Versioning](http://semver.org/spec/v2.0.0.html) except to the first release.
 
 ### Changed
 
+- Update parsing enum macro of `errcode.h` from Tarantool 3.2.0 (#6).
+
 ### Fixed
 
 ## [1.0.0] - 2023-12-27
