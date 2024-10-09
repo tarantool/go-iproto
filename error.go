@@ -9,17 +9,17 @@ type Error int
 const (
 	// "Unknown error"
 	ER_UNKNOWN Error = 0
-	// "Illegal parameters, %s"
+	// "%s"
 	ER_ILLEGAL_PARAMS Error = 1
 	// "Failed to allocate %u bytes in %s for %s"
 	ER_MEMORY_ISSUE Error = 2
 	// "Duplicate key exists in unique index \"%s\" in space \"%s\" with old tuple - %s and new tuple - %s"
 	ER_TUPLE_FOUND Error = 3
-	// "Tuple doesn't exist in index '%s' in space '%s'"
+	// Unused
 	ER_TUPLE_NOT_FOUND Error = 4
 	// "%s does not support %s"
 	ER_UNSUPPORTED Error = 5
-	// "Can't modify data on a replication slave. My master is: %s"
+	// Unused
 	ER_NONMASTER Error = 6
 	// "Can't modify data on a read-only instance"
 	ER_READONLY Error = 7
@@ -49,7 +49,7 @@ const (
 	ER_EXACT_MATCH Error = 19
 	// "Invalid MsgPack - %s"
 	ER_INVALID_MSGPACK Error = 20
-	// "msgpack.encode: can not encode Lua type '%s'"
+	// Unused
 	ER_PROC_RET Error = 21
 	// "Tuple/Key must be MsgPack array"
 	ER_TUPLE_NOT_ARRAY Error = 22
@@ -73,7 +73,7 @@ const (
 	ER_KEY_PART_COUNT Error = 31
 	// "%s"
 	ER_PROC_LUA Error = 32
-	// "Procedure '%.*s' is not defined"
+	// "Procedure '%s' is not defined"
 	ER_NO_SUCH_PROC Error = 33
 	// "Trigger '%s' doesn't exist"
 	ER_NO_SUCH_TRIGGER Error = 34
@@ -143,7 +143,7 @@ const (
 	ER_INSTANCE_UUID_MISMATCH Error = 66
 	// "Can't initialize replica id with a reserved value %u"
 	ER_REPLICA_ID_IS_RESERVED Error = 67
-	// "Invalid LSN order for instance %u: previous LSN = %llu, new lsn = %llu"
+	// Unused
 	ER_INVALID_ORDER Error = 68
 	// "Missing mandatory field '%s' in request"
 	ER_MISSING_REQUEST_FIELD Error = 69
@@ -155,11 +155,11 @@ const (
 	ER_ITERATOR_TYPE Error = 72
 	// "Replica count limit reached: %u"
 	ER_REPLICA_MAX Error = 73
-	// "Failed to read xlog: %lld"
+	// Unused
 	ER_INVALID_XLOG Error = 74
-	// "Invalid xlog name: expected %lld got %lld"
+	// Unused
 	ER_INVALID_XLOG_NAME Error = 75
-	// "Invalid xlog order: %lld and %lld"
+	// Unused
 	ER_INVALID_XLOG_ORDER Error = 76
 	// "Connection is not established"
 	ER_NO_CONNECTION Error = 77
@@ -169,7 +169,7 @@ const (
 	ER_ACTIVE_TRANSACTION Error = 79
 	// "The transaction the cursor belongs to has ended"
 	ER_CURSOR_NO_TRANSACTION Error = 80
-	// "A multi-statement transaction can not use multiple storage engines"
+	// "Storage engine '%s' does not support cross-engine transactions"
 	ER_CROSS_ENGINE_TRANSACTION Error = 81
 	// "Role '%s' is not found"
 	ER_NO_SUCH_ROLE Error = 82
@@ -185,7 +185,7 @@ const (
 	ER_ROLE_LOOP Error = 87
 	// "Incorrect grant arguments: %s"
 	ER_GRANT Error = 88
-	// "User '%s' already has %s access on %s%s"
+	// "User '%s' already has %s access on %s"
 	ER_PRIV_GRANTED Error = 89
 	// "User '%s' already has role '%s'"
 	ER_ROLE_GRANTED Error = 90
@@ -213,11 +213,11 @@ const (
 	ER_RTREE_RECT Error = 101
 	// "%s"
 	ER_PROC_C Error = 102
-	// "Unknown RTREE index distance type %s"
+	// Unused
 	ER_UNKNOWN_RTREE_INDEX_DISTANCE_TYPE Error = 103
 	// "%s"
 	ER_PROTOCOL Error = 104
-	// "Space %s has a unique secondary index and does not support UPSERT"
+	// Unused
 	ER_UPSERT_UNIQUE_SECONDARY_KEY Error = 105
 	// "Wrong record in _index space: got {%s}, expected {%s}"
 	ER_WRONG_INDEX_RECORD Error = 106
@@ -243,7 +243,7 @@ const (
 	ER_LOADING Error = 116
 	// "Connection to self"
 	ER_CONNECTION_TO_SELF Error = 117
-	// "Key part is too long: %u of %u bytes"
+	// Unused
 	ER_KEY_PART_IS_TOO_LONG Error = 118
 	// "Compression error: %s"
 	ER_COMPRESSION Error = 119
@@ -279,11 +279,11 @@ const (
 	ER_CASCADE_ROLLBACK Error = 134
 	// "Timed out waiting for Vinyl memory quota"
 	ER_VY_QUOTA_TIMEOUT Error = 135
-	// "%s index does not support selects via a partial key (expected %u parts, got %u). Please Consider changing index type to TREE."
+	// "%s index  does not support selects via a partial key (expected %u parts, got %u). Please Consider changing index type to TREE."
 	ER_PARTIAL_KEY Error = 136
 	// "Can't truncate a system space, space '%s'"
 	ER_TRUNCATE_SYSTEM_SPACE Error = 137
-	// "Failed to dynamically load module '%.*s': %s"
+	// "Failed to dynamically load module '%s': %s"
 	ER_LOAD_MODULE Error = 138
 	// "Failed to allocate %u bytes for tuple: tuple is too large. Check 'vinyl_max_tuple_size' configuration option."
 	ER_VINYL_MAX_TUPLE_SIZE Error = 139
@@ -319,7 +319,7 @@ const (
 	ER_TRANSACTION_YIELD Error = 154
 	// "Replication group '%s' does not exist"
 	ER_NO_SUCH_GROUP Error = 155
-	// "Bind value for parameter %s is out of range for type %s"
+	// Unused
 	ER_SQL_BIND_VALUE Error = 156
 	// "Bind value type %s for parameter %s is not supported"
 	ER_SQL_BIND_TYPE Error = 157
@@ -343,7 +343,7 @@ const (
 	ER_NO_SUCH_COLLATION Error = 166
 	// "Failed to create foreign key constraint '%s': %s"
 	ER_CREATE_FK_CONSTRAINT Error = 167
-	// "Failed to drop foreign key constraint '%s': %s"
+	// Unused
 	ER_DROP_FK_CONSTRAINT Error = 168
 	// "Constraint '%s' does not exist in space '%s'"
 	ER_NO_SUCH_CONSTRAINT Error = 169
@@ -359,7 +359,7 @@ const (
 	ER_ILLEGAL_COLLATION_MIX Error = 174
 	// "Pragma '%s' does not exist"
 	ER_SQL_NO_SUCH_PRAGMA Error = 175
-	// "Can’t resolve field '%s'"
+	// "Can't resolve field '%s'"
 	ER_SQL_CANT_RESOLVE_FIELD Error = 176
 	// "Index '%s' already exists in space '%s'"
 	ER_INDEX_EXISTS_IN_SPACE Error = 177
@@ -373,33 +373,33 @@ const (
 	ER_SQL_SELECT_WILDCARD Error = 181
 	// "Failed to execute an empty SQL statement"
 	ER_SQL_STATEMENT_EMPTY Error = 182
-	// "At line %d at or near position %d: keyword '%.*s' is reserved. Please use double quotes if '%.*s' is an identifier."
+	// "At line %d at or near position %d: keyword '%s' is reserved. Please use double quotes if '%s' is an identifier."
 	ER_SQL_KEYWORD_IS_RESERVED Error = 183
-	// "Syntax error at line %d near '%.*s'"
+	// "Syntax error at line %d near '%s'"
 	ER_SQL_SYNTAX_NEAR_TOKEN Error = 184
-	// "At line %d at or near position %d: unrecognized token '%.*s'"
+	// "At line %d at or near position %d: unrecognized token '%s'"
 	ER_SQL_UNKNOWN_TOKEN Error = 185
 	// "%s"
 	ER_SQL_PARSER_GENERIC Error = 186
-	// "ANALYZE statement argument %s is not a base table"
+	// Unused
 	ER_SQL_ANALYZE_ARGUMENT Error = 187
 	// "Failed to create space '%s': space column count %d exceeds the limit (%d)"
 	ER_SQL_COLUMN_COUNT_MAX Error = 188
-	// "Hex literal %s%s length %d exceeds the supported limit (%d)"
+	// "Hex literal %s length %d exceeds the supported limit (%d)"
 	ER_HEX_LITERAL_MAX Error = 189
-	// "Integer literal %s%s exceeds the supported range [-9223372036854775808, 18446744073709551615]"
+	// "Integer literal %s exceeds the supported range [-9223372036854775808, 18446744073709551615]"
 	ER_INT_LITERAL_MAX Error = 190
 	// "%s %d exceeds the limit (%d)"
 	ER_SQL_PARSER_LIMIT Error = 191
 	// "%s are prohibited in an index definition"
 	ER_INDEX_DEF_UNSUPPORTED Error = 192
-	// "%s are prohibited in a ck constraint definition"
+	// Unused
 	ER_CK_DEF_UNSUPPORTED Error = 193
 	// "Field %s is used as multikey in one index and as single key in another"
 	ER_MULTIKEY_INDEX_MISMATCH Error = 194
 	// "Failed to create check constraint '%s': %s"
 	ER_CREATE_CK_CONSTRAINT Error = 195
-	// "Check constraint failed '%s': %s"
+	// Unused
 	ER_CK_CONSTRAINT_FAILED Error = 196
 	// "Unequal number of entries in row expression: left side has %u, but right side - %u"
 	ER_SQL_COLUMN_COUNT Error = 197
@@ -437,7 +437,7 @@ const (
 	ER_NO_SUCH_SESSION_SETTING Error = 213
 	// "Found uncommitted sync transactions from other instance with id %u"
 	ER_UNCOMMITTED_FOREIGN_SYNC_TXNS Error = 214
-	// "CONFIRM message arrived for an unknown master id %d, expected %d"
+	// Unused
 	ER_SYNC_MASTER_MISMATCH Error = 215
 	// "Quorum collection for a synchronous transaction is timed out"
 	ER_SYNC_QUORUM_TIMEOUT Error = 216
@@ -549,7 +549,7 @@ const (
 	ER_INSTANCE_NAME_DUPLICATE Error = 269
 	// "Instance name mismatch: name '%s' provided in config confilcts with the instance one '%s'"
 	ER_INSTANCE_NAME_MISMATCH Error = 270
-	// "Your schema version is %u.%u.%u while Tarantool %s requires a more recent schema version. Please, consider using box.schema.upgrade()."
+	// "Your schema version is %s while Tarantool feature %s requires schema version %s or higher. Please, consider using box.schema.upgrade()."
 	ER_SCHEMA_NEEDS_UPGRADE Error = 271
 	// "Schema upgrade is already in progress"
 	ER_SCHEMA_UPGRADE_IN_PROGRESS Error = 272
@@ -565,4 +565,30 @@ const (
 	ER_INVALID_DEC Error = 277
 	// "box.ctl.promote() is already running"
 	ER_IN_ANOTHER_PROMOTE Error = 278
+	// "Server is shutting down"
+	ER_SHUTDOWN Error = 279
+	// "The value of field %s exceeds the supported range for type '%s': %s"
+	ER_FIELD_VALUE_OUT_OF_RANGE Error = 280
+	// "The replicaset was not found by its name"
+	ER_REPLICASET_NOT_FOUND Error = 281
+	// "Writable instance was not found in replicaset"
+	ER_REPLICASET_NO_WRITABLE Error = 282
+	// "More than one writable was found in replicaset"
+	ER_REPLICASET_MORE_THAN_ONE_WRITABLE Error = 283
+	// "Transaction was committed"
+	ER_TXN_COMMIT Error = 284
+	// "The read view is busy"
+	ER_READ_VIEW_BUSY Error = 285
+	// "The read view is closed"
+	ER_READ_VIEW_CLOSED Error = 286
+	// "The WAL queue is full"
+	ER_WAL_QUEUE_FULL Error = 287
+	// "Invalid vclock"
+	ER_INVALID_VCLOCK Error = 288
+	// "Failed to encode Arrow IPC data"
+	ER_ARROW_IPC_ENCODE Error = 289
+	// "Failed to decode Arrow IPC data"
+	ER_ARROW_IPC_DECODE Error = 290
+	// "The synchronous transaction queue is full"
+	ER_SYNC_QUEUE_FULL Error = 291
 )

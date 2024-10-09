@@ -70,6 +70,9 @@ const (
 	IPROTO_BIND_COUNT    Key = 0x34
 	// Position of last selected tuple in response.
 	IPROTO_POSITION Key = 0x35
+	// Also request keys. See the comment above.
+	// The data in Arrow format.
+	IPROTO_ARROW Key = 0x36
 	// Leave a gap between response keys and SQL keys.
 	IPROTO_SQL_TEXT Key = 0x40
 	IPROTO_SQL_BIND Key = 0x41
@@ -119,6 +122,15 @@ const (
 	IPROTO_TUPLE_FORMATS Key = 0x60
 	// Flag indicating whether the transaction is synchronous.
 	IPROTO_IS_SYNC Key = 0x61
+	// Flag indicating whether checkpoint join should be done.
+	IPROTO_IS_CHECKPOINT_JOIN Key = 0x62
+	// Shows the signature of the checkpoint to read from.
+	// Requires CHECKPOINT_JOIN to be true.
+	IPROTO_CHECKPOINT_VCLOCK Key = 0x63
+	// Shows the lsn to start sending from. Server sends all rows
+	// >= IPROTO_CHECKPOINT_LSN. Requires CHECKPOINT_JOIN to be
+	// true and CHECKPOINT_VCLOCK to be set.
+	IPROTO_CHECKPOINT_LSN Key = 0x64
 )
 
 // IPROTO metadata key constants, generated from

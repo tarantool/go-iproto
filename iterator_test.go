@@ -27,6 +27,8 @@ func TestIterator(t *testing.T) {
 		{iproto.ITER_BITS_ALL_NOT_SET, "ITER_BITS_ALL_NOT_SET", 9},
 		{iproto.ITER_OVERLAPS, "ITER_OVERLAPS", 10},
 		{iproto.ITER_NEIGHBOR, "ITER_NEIGHBOR", 11},
+		{iproto.ITER_NP, "ITER_NP", 12},
+		{iproto.ITER_PP, "ITER_PP", 13},
 	}
 
 	for _, tc := range cases {
