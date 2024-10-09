@@ -11,12 +11,12 @@ if [[ -z "${TT_REPO}" ]]; then
 	TT_REPO="https://github.com/tarantool/tarantool.git"
 fi
 
-TT_DIR=tarantool
+TT_DIR=tarantool-${TT_TAG}
 
 # Cleanup.
 rm -rf ${TT_DIR}
 
-git clone --depth 1 --branch ${TT_TAG} ${TT_REPO} -o ${TT_DIR}
+git clone --depth 1 --branch ${TT_TAG} ${TT_REPO} ${TT_DIR}
 cd ${TT_DIR}
 TT_COMMIT=$(git log -n 1 | head -n 1 | sed "s/commit //")
 cd ..
@@ -227,25 +227,30 @@ EOF
 echo "${FOOTER}" > ${DST_ERRORS}
 cat << EOF >> ${DST_ERRORS}
 // IPROTO error code constants, generated from
-// ${SRC_ERRORS}
+// ${SRC_ERRORS//-${TT_TAG}/}
 type Error int
 
 const (
 EOF
 
-grep "(ER_" ${SRC_ERRORS} | \
-	# Remove comments symbols.
-	sed "s/\/\*//" | \
-	sed "s/\*\/_(//" | \
-	# Remove and of values.
-	sed "s/) *\\\//" | \
-	# Remove comma at an end of a value.
-	sed "s/,/ /" | \
-	# Finally print parsed values in Golang format.
-	awk '{
-		com="";
-		for(i=3;i<=NF;i++){com=com" "$i};
-		printf("\t//%s\n\t%s Error = %s\n", com, $2, $1)
+# Extract body of define ERROR_CODES
+ERROR_CODES=`sed -n '/^#define ERROR_CODES(/,/This one should be last/{//!p;}' ${SRC_ERRORS}`
+
+echo "${ERROR_CODES}" | \
+	# Get line with ER_* description.
+	sed -nE 's/^[^E]*(ER_.+)\s*\\\s*$/\1/p'  | \
+	# Remove trailing parenthesis or comment's ending.
+	sed -E 's/(.*)\s*(:?\)|\*\/)\s*$/\1/' | \
+	# Extract three fields: name, id and first comment string.
+	# Match string based on https://regex101.com/library/zI0yV6
+	sed -E 's/^([^"]+)("([^"]|\\")*[^\\]"|"").*$/\1\2/' | \
+	# Format three fields comma separated for Go lang const declaration.
+	awk '
+	BEGIN{ FS=",[[:space:]]*" }
+	{
+		com=$3;
+		for(i=4; i<=NF; i++){ com=com", "$i };
+		printf("\t// %s\n\t%s Error = %s\n", com, $1, $2)
 	}' >> ${DST_ERRORS}
 
 echo ")" >> ${DST_ERRORS}
@@ -259,7 +264,7 @@ func TestError(t *testing.T) {
 	} {
 EOF
 
-grep -o "ER_[A-Z0-9_]\+," ${SRC_ERRORS} | \
+echo "${ERROR_CODES}" | grep -o "ER_[A-Z0-9_]\+," | \
 	sed "s/,$//" | \
 	awk '{printf("\t\t{iproto.%s, \"%s\"},\n", $1, $1)}' >> ${DST_ERRORS_TEST}
 
@@ -286,7 +291,7 @@ EOF
 echo "${FOOTER}" > ${DST_FEATURES}
 cat << EOF >> ${DST_FEATURES}
 // IPROTO feature constants, generated from
-// ${SRC_FEATURES}
+// ${SRC_FEATURES//-${TT_TAG}/}
 EOF
 
 read_define_with_prefix IPROTO_FEATURES iproto_feature_id ${SRC_FEATURES} | \
@@ -304,7 +309,7 @@ read_define_with_prefix IPROTO_FEATURES iproto_feature_id ${SRC_FEATURES} | \
 echo "${FOOTER}" > ${DST_FLAGS}
 cat << EOF >> ${DST_FLAGS}
 // IPROTO flag constants, generated from
-// ${SRC_CONST}
+// ${SRC_CONST//-${TT_TAG}/}
 EOF
 
 read_define_with_prefix IPROTO_FLAGS iproto_flag ${SRC_CONST} | \
@@ -322,7 +327,7 @@ read_define_with_prefix IPROTO_FLAGS iproto_flag ${SRC_CONST} | \
 echo "${FOOTER}" > ${DST_ITERATORS}
 cat << EOF >> ${DST_ITERATORS}
 // IPROTO iterators constants, generated from
-// ${SRC_ITERATORS}
+// ${SRC_ITERATORS//-${TT_TAG}/}
 EOF
 
 read_enum iterator_type ${SRC_ITERATORS} | \
@@ -340,7 +345,7 @@ read_enum iterator_type ${SRC_ITERATORS} | \
 echo "${FOOTER}" > ${DST_TYPES}
 cat << EOF >> ${DST_TYPES}
 // IPROTO type constants, generated from
-// ${SRC_CONST}
+// ${SRC_CONST//-${TT_TAG}/}
 EOF
 
 read_define_with_prefix IPROTO_TYPES iproto_type ${SRC_CONST} | \
@@ -358,7 +363,7 @@ read_define_with_prefix IPROTO_TYPES iproto_type ${SRC_CONST} | \
 echo "${FOOTER}" > ${DST_KEYS}
 cat << EOF >> ${DST_KEYS}
 // IPROTO key constants, generated from
-// ${SRC_CONST}
+// ${SRC_CONST//-${TT_TAG}/}
 EOF
 
 read_define_with_prefix IPROTO_KEYS iproto_key ${SRC_CONST} | \
@@ -367,7 +372,7 @@ read_define_with_prefix IPROTO_KEYS iproto_key ${SRC_CONST} | \
 cat << EOF >> ${DST_KEYS}
 
 // IPROTO metadata key constants, generated from
-// ${SRC_CONST}
+// ${SRC_CONST//-${TT_TAG}/}
 EOF
 
 read_define_with_prefix IPROTO_METADATA_KEYS iproto_metadata_key ${SRC_CONST} | \
@@ -376,7 +381,7 @@ read_define_with_prefix IPROTO_METADATA_KEYS iproto_metadata_key ${SRC_CONST} | 
 cat << EOF >> ${DST_KEYS}
 
 // IPROTO ballot key constants, generated from
-// ${SRC_CONST}
+// ${SRC_CONST//-${TT_TAG}/}
 EOF
 
 read_define_with_prefix IPROTO_BALLOT_KEYS iproto_ballot_key ${SRC_CONST} | \
@@ -385,7 +390,7 @@ read_define_with_prefix IPROTO_BALLOT_KEYS iproto_ballot_key ${SRC_CONST} | \
 cat << EOF >> ${DST_KEYS}
 
 // IPROTO raft key constants, generated from
-// ${SRC_CONST}
+// ${SRC_CONST//-${TT_TAG}/}
 EOF
 
 read_define_with_prefix IPROTO_RAFT_KEYS iproto_raft_key ${SRC_CONST} | \
@@ -394,7 +399,7 @@ read_define_with_prefix IPROTO_RAFT_KEYS iproto_raft_key ${SRC_CONST} | \
 cat << EOF >> ${DST_KEYS}
 
 // IPROTO SQL info key constants, generated from
-// ${SRC_EXECUTE}
+// ${SRC_EXECUTE//-${TT_TAG}/}
 EOF
 
 read_enum sql_info_key ${SRC_EXECUTE} | \
