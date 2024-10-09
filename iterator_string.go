@@ -20,11 +20,13 @@ func _() {
 	_ = x[ITER_BITS_ALL_NOT_SET-9]
 	_ = x[ITER_OVERLAPS-10]
 	_ = x[ITER_NEIGHBOR-11]
+	_ = x[ITER_NP-12]
+	_ = x[ITER_PP-13]
 }
 
-const _Iterator_name = "ITER_EQITER_REQITER_ALLITER_LTITER_LEITER_GEITER_GTITER_BITS_ALL_SETITER_BITS_ANY_SETITER_BITS_ALL_NOT_SETITER_OVERLAPSITER_NEIGHBOR"
+const _Iterator_name = "ITER_EQITER_REQITER_ALLITER_LTITER_LEITER_GEITER_GTITER_BITS_ALL_SETITER_BITS_ANY_SETITER_BITS_ALL_NOT_SETITER_OVERLAPSITER_NEIGHBORITER_NPITER_PP"
 
-var _Iterator_index = [...]uint8{0, 7, 15, 23, 30, 37, 44, 51, 68, 85, 106, 119, 132}
+var _Iterator_index = [...]uint8{0, 7, 15, 23, 30, 37, 44, 51, 68, 85, 106, 119, 132, 139, 146}
 
 func (i Iterator) String() string {
 	if i < 0 || i >= Iterator(len(_Iterator_index)-1) {

@@ -49,4 +49,13 @@ const (
 	// Tuples in IPROTO_TUPLE request field are encoded as MP_TUPLE and
 	// tuple formats are received in IPROTO_TUPLE_FORMATS field.
 	IPROTO_FEATURE_CALL_ARG_TUPLE_EXTENSION Feature = 9
+	// Cursor (for checkpoint join) in FETCH_SNAPSHOT support:
+	// IPROTO_IS_CHECKPOINT_JOIN, IPROTO_CHECKPOINT_VCLOCK and
+	// IRPOTO_CHECKPOINT_LSN.
+	IPROTO_FEATURE_FETCH_SNAPSHOT_CURSOR Feature = 10
+	// Synchronous transaction support:
+	// IS_SYNC flag in IPROTO_BEGIN, IPROTO_COMMIT
+	IPROTO_FEATURE_IS_SYNC Feature = 11
+	// Support of data insertion in Arrow format.
+	IPROTO_FEATURE_INSERT_ARROW Feature = 12
 )

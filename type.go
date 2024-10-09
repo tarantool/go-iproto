@@ -41,7 +41,9 @@ const (
 	IPROTO_COMMIT Type = 15
 	// Rollback transaction
 	IPROTO_ROLLBACK Type = 16
-	IPROTO_RAFT     Type = 30
+	// INSERT Arrow request.
+	IPROTO_INSERT_ARROW Type = 17
+	IPROTO_RAFT         Type = 30
 	// PROMOTE request.
 	IPROTO_RAFT_PROMOTE Type = 31
 	// DEMOTE request.
@@ -104,7 +106,7 @@ const (
 	// Used for overriding the unknown request handler
 	IPROTO_UNKNOWN Type = -1
 	// The maximum typecode used for box.stat()
-	IPROTO_TYPE_STAT_MAX Type = IPROTO_ROLLBACK + 1
+	IPROTO_TYPE_STAT_MAX Type = IPROTO_INSERT_ARROW + 1
 	// Vinyl run info stored in .index file
 	VY_INDEX_RUN_INFO Type = 100
 	// Vinyl page info stored in .index file

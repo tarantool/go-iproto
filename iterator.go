@@ -19,5 +19,7 @@ const (
 	ITER_BITS_ANY_SET     Iterator = 8  // at least one x's bit is set
 	ITER_BITS_ALL_NOT_SET Iterator = 9  // all bits are not set
 	ITER_OVERLAPS         Iterator = 10 // key overlaps x
-	ITER_NEIGHBOR         Iterator = 11 // tuples in distance ascending order from specified point
+	ITER_NEIGHBOR         Iterator = 11 // tuples as they move away from x point
+	ITER_NP               Iterator = 12 // next prefix, ASC order
+	ITER_PP               Iterator = 13 // previous prefix, DESC order
 )
