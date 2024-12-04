@@ -585,10 +585,10 @@ const (
 	ER_WAL_QUEUE_FULL Error = 287
 	// "Invalid vclock"
 	ER_INVALID_VCLOCK Error = 288
-	// "Failed to encode Arrow IPC data"
-	ER_ARROW_IPC_ENCODE Error = 289
-	// "Failed to decode Arrow IPC data"
-	ER_ARROW_IPC_DECODE Error = 290
 	// "The synchronous transaction queue is full"
-	ER_SYNC_QUEUE_FULL Error = 291
+	ER_SYNC_QUEUE_FULL Error = 289
+	// "The value of key part exceeds the supported range for type"
+	ER_KEY_PART_VALUE_OUT_OF_RANGE Error = 290
+	// "Cannot clean up replica's resources"
+	ER_REPLICA_GC Error = 291
 )

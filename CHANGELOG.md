@@ -12,11 +12,17 @@ Versioning](http://semver.org/spec/v2.0.0.html) except to the first release.
 
 ### Changed
 
-- Update parsing enum macro of `errcode.h` from Tarantool 3.2.0 (#6).
-
 ### Fixed
 
-## [1.0.0] - 2023-12-27
+## [v1.1.0] - 2024-12-04
+
+The release updates IPROTO constants for Tarantool 3.3.0.
+
+### Added
+
+- Constants from Tarantool 3.3.0.
+
+## [v1.0.0] - 2023-12-27
 
 The first stable release exports IPROTO constants from Tarantool 3.0.0.
 
@@ -28,7 +34,7 @@ The first stable release exports IPROTO constants from Tarantool 3.0.0.
 
 - `ER_UNUSED` with error code 248 renamed to `ER_DEFAULT_VALUE_TYPE` (#4).
 
-## [0.1.0] - 2023-06-01
+## [v0.1.0] - 2023-06-01
 
 The initial release adds IPROTO constants exported from Tarantool 2.11.0.
 
