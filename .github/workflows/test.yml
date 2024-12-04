@@ -58,7 +58,7 @@ jobs:
 
     - run: make deps
 
-    - run: TT_TAG=master make
+    - run: TT_TAG=3.3.0 make
 
   golangci-lint:
     if: (github.event_name == 'push') ||

@@ -302,9 +302,9 @@ func TestError(t *testing.T) {
 		{iproto.ER_READ_VIEW_CLOSED, "ER_READ_VIEW_CLOSED"},
 		{iproto.ER_WAL_QUEUE_FULL, "ER_WAL_QUEUE_FULL"},
 		{iproto.ER_INVALID_VCLOCK, "ER_INVALID_VCLOCK"},
-		{iproto.ER_ARROW_IPC_ENCODE, "ER_ARROW_IPC_ENCODE"},
-		{iproto.ER_ARROW_IPC_DECODE, "ER_ARROW_IPC_DECODE"},
 		{iproto.ER_SYNC_QUEUE_FULL, "ER_SYNC_QUEUE_FULL"},
+		{iproto.ER_KEY_PART_VALUE_OUT_OF_RANGE, "ER_KEY_PART_VALUE_OUT_OF_RANGE"},
+		{iproto.ER_REPLICA_GC, "ER_REPLICA_GC"},
 	}
 
 	for i, tc := range cases {
