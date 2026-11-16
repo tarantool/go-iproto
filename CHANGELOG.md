@@ -10,6 +10,16 @@ Versioning](http://semver.org/spec/v2.0.0.html) except to the first release.
 
 ### Added
 
+### Changed
+
+### Fixed
+
+## [v1.2.0] - 2026-11-16
+
+The release updates IPROTO constants for Tarantool 3.9.0.
+
+### Added
+
 - Constants from Tarantool 3.9.0:
   * `IPROTO_THREAD_ID`, `IPROTO_AUDIT_CONTEXT`, `IPROTO_BEGIN_KEY`,
     `IPROTO_END_KEY` keys.
@@ -29,8 +39,6 @@ Versioning](http://semver.org/spec/v2.0.0.html) except to the first release.
 - `ER_CROSS_ENGINE_TRANSACTION`, `ER_SQL_SYNTAX_WITH_POS` and
   `ER_SQL_PARSER_GENERIC_WITH_POS` are unused in Tarantool 3.9.0, the
   constants are kept for compatibility.
-
-### Fixed
 
 ## [v1.1.0] - 2024-12-04
 
