@@ -19,6 +19,11 @@ const (
 	IPROTO_TSN            Key = 0x08
 	IPROTO_FLAGS          Key = 0x09
 	IPROTO_STREAM_ID      Key = 0x0a
+	IPROTO_THREAD_ID      Key = 0x0b
+	// An audit context propagated to all child requests and fibers,
+	// and printed in the audit log. Tarantool does not parse, validate
+	// or modify the value.
+	IPROTO_AUDIT_CONTEXT Key = 0x0c
 	// Leave a gap for other keys in the header.
 	IPROTO_SPACE_ID   Key = 0x10
 	IPROTO_INDEX_ID   Key = 0x11
@@ -73,6 +78,10 @@ const (
 	// Also request keys. See the comment above.
 	// The data in Arrow format.
 	IPROTO_ARROW Key = 0x36
+	// The key to operate from.
+	IPROTO_BEGIN_KEY Key = 0x37
+	// The key to operate until.
+	IPROTO_END_KEY Key = 0x38
 	// Leave a gap between response keys and SQL keys.
 	IPROTO_SQL_TEXT Key = 0x40
 	IPROTO_SQL_BIND Key = 0x41

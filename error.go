@@ -169,7 +169,7 @@ const (
 	ER_ACTIVE_TRANSACTION Error = 79
 	// "The transaction the cursor belongs to has ended"
 	ER_CURSOR_NO_TRANSACTION Error = 80
-	// "Storage engine '%s' does not support cross-engine transactions"
+	// Unused
 	ER_CROSS_ENGINE_TRANSACTION Error = 81
 	// "Role '%s' is not found"
 	ER_NO_SUCH_ROLE Error = 82
@@ -365,7 +365,7 @@ const (
 	ER_INDEX_EXISTS_IN_SPACE Error = 177
 	// "Inconsistent types: expected %s got %s"
 	ER_INCONSISTENT_TYPES Error = 178
-	// "Syntax error at line %d at or near position %d: %s"
+	// Unused
 	ER_SQL_SYNTAX_WITH_POS Error = 179
 	// "Failed to parse SQL statement: parser stack limit reached"
 	ER_SQL_STACK_OVERFLOW Error = 180
@@ -419,7 +419,7 @@ const (
 	ER_SQL_FUNC_WRONG_RET_COUNT Error = 204
 	// "Function '%s' returned value of invalid type: expected %s got %s"
 	ER_FUNC_INVALID_RETURN_TYPE Error = 205
-	// "At line %d at or near position %d: %s"
+	// Unused
 	ER_SQL_PARSER_GENERIC_WITH_POS Error = 206
 	// "Replica '%s' is not anonymous and cannot register."
 	ER_REPLICA_NOT_ANON Error = 207
@@ -591,4 +591,34 @@ const (
 	ER_KEY_PART_VALUE_OUT_OF_RANGE Error = 290
 	// "Cannot clean up replica's resources"
 	ER_REPLICA_GC Error = 291
+	// "Snapshot contains alien space engine row"
+	ER_ALIEN_ENGINE Error = 292
+	// "MVCC is unavailable for storage engine '%s' so it cannot be used in the same transaction with '%s', which supports MVCC"
+	ER_MVCC_UNAVAILABLE Error = 293
+	// "Space upgrade doesn't support changing indexed fields"
+	ER_CANT_UPGRADE_INDEXED_FIELD Error = 294
+	// "Quorum collection for a synchronous transaction is timed out. The transaction is detached from this fiber and continues waiting for quorum"
+	ER_SYNC_TIMEOUT Error = 295
+	// "The value does not fit in field type"
+	ER_FIELD_IRREPRESENTABLE_VALUE Error = 296
+	// "The value of key part does not fit in type"
+	ER_KEY_PART_IRREPRESENTABLE_VALUE Error = 297
+	// "Invalid MemTX sort data file"
+	ER_INVALID_SORTDATA_FILE Error = 298
+	// "Thread does not exist"
+	ER_NO_SUCH_THREAD Error = 299
+	// "Unable to process request in thread"
+	ER_UNABLE_TO_PROCESS_IN_THREAD Error = 300
+	// "Dictionary has no space - too many unique values are used"
+	ER_DICT_OVERFLOW Error = 301
+	// "Thread group does not exist"
+	ER_NO_SUCH_THREAD_GROUP Error = 302
+	// "xlog file not found"
+	ER_XLOG_NOT_FOUND Error = 303
+	// "Last row of recovery point transaction should not be local"
+	ER_RECOVERY_POINT_TXN_LAST_ROW Error = 304
+	// "Read view was not found by id"
+	ER_NO_SUCH_READ_VIEW Error = 305
+	// "Read view creation is throttled, try again later"
+	ER_READ_VIEW_THROTTLED Error = 306
 )

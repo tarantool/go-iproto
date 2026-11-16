@@ -28,8 +28,9 @@ const _Feature_name = "IPROTO_FEATURE_STREAMSIPROTO_FEATURE_TRANSACTIONSIPROTO_F
 var _Feature_index = [...]uint16{0, 22, 49, 79, 102, 127, 163, 188, 222, 261, 300, 336, 358, 385}
 
 func (i Feature) String() string {
-	if i < 0 || i >= Feature(len(_Feature_index)-1) {
+	idx := int(i) - 0
+	if i < 0 || idx >= len(_Feature_index)-1 {
 		return "Feature(" + strconv.FormatInt(int64(i), 10) + ")"
 	}
-	return _Feature_name[_Feature_index[i]:_Feature_index[i+1]]
+	return _Feature_name[_Feature_index[idx]:_Feature_index[idx+1]]
 }
