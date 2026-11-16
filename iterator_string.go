@@ -29,8 +29,9 @@ const _Iterator_name = "ITER_EQITER_REQITER_ALLITER_LTITER_LEITER_GEITER_GTITER_
 var _Iterator_index = [...]uint8{0, 7, 15, 23, 30, 37, 44, 51, 68, 85, 106, 119, 132, 139, 146}
 
 func (i Iterator) String() string {
-	if i < 0 || i >= Iterator(len(_Iterator_index)-1) {
+	idx := int(i) - 0
+	if i < 0 || idx >= len(_Iterator_index)-1 {
 		return "Iterator(" + strconv.FormatInt(int64(i), 10) + ")"
 	}
-	return _Iterator_name[_Iterator_index[i]:_Iterator_index[i+1]]
+	return _Iterator_name[_Iterator_index[idx]:_Iterator_index[idx+1]]
 }

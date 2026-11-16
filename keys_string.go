@@ -19,6 +19,8 @@ func _() {
 	_ = x[IPROTO_TSN-8]
 	_ = x[IPROTO_FLAGS-9]
 	_ = x[IPROTO_STREAM_ID-10]
+	_ = x[IPROTO_THREAD_ID-11]
+	_ = x[IPROTO_AUDIT_CONTEXT-12]
 	_ = x[IPROTO_SPACE_ID-16]
 	_ = x[IPROTO_INDEX_ID-17]
 	_ = x[IPROTO_LIMIT-18]
@@ -49,6 +51,8 @@ func _() {
 	_ = x[IPROTO_BIND_COUNT-52]
 	_ = x[IPROTO_POSITION-53]
 	_ = x[IPROTO_ARROW-54]
+	_ = x[IPROTO_BEGIN_KEY-55]
+	_ = x[IPROTO_END_KEY-56]
 	_ = x[IPROTO_SQL_TEXT-64]
 	_ = x[IPROTO_SQL_BIND-65]
 	_ = x[IPROTO_SQL_INFO-66]
@@ -77,29 +81,29 @@ func _() {
 }
 
 const (
-	_Key_name_0 = "IPROTO_REQUEST_TYPEIPROTO_SYNCIPROTO_REPLICA_IDIPROTO_LSNIPROTO_TIMESTAMPIPROTO_SCHEMA_VERSIONIPROTO_SERVER_VERSIONIPROTO_GROUP_IDIPROTO_TSNIPROTO_FLAGSIPROTO_STREAM_ID"
+	_Key_name_0 = "IPROTO_REQUEST_TYPEIPROTO_SYNCIPROTO_REPLICA_IDIPROTO_LSNIPROTO_TIMESTAMPIPROTO_SCHEMA_VERSIONIPROTO_SERVER_VERSIONIPROTO_GROUP_IDIPROTO_TSNIPROTO_FLAGSIPROTO_STREAM_IDIPROTO_THREAD_IDIPROTO_AUDIT_CONTEXT"
 	_Key_name_1 = "IPROTO_SPACE_IDIPROTO_INDEX_IDIPROTO_LIMITIPROTO_OFFSETIPROTO_ITERATORIPROTO_INDEX_BASE"
-	_Key_name_2 = "IPROTO_FETCH_POSITIONIPROTO_KEYIPROTO_TUPLEIPROTO_FUNCTION_NAMEIPROTO_USER_NAMEIPROTO_INSTANCE_UUIDIPROTO_REPLICASET_UUIDIPROTO_VCLOCKIPROTO_EXPRIPROTO_OPSIPROTO_BALLOTIPROTO_TUPLE_METAIPROTO_OPTIONSIPROTO_OLD_TUPLEIPROTO_NEW_TUPLEIPROTO_AFTER_POSITIONIPROTO_AFTER_TUPLEIPROTO_DATAIPROTO_ERROR_24IPROTO_METADATAIPROTO_BIND_METADATAIPROTO_BIND_COUNTIPROTO_POSITIONIPROTO_ARROW"
+	_Key_name_2 = "IPROTO_FETCH_POSITIONIPROTO_KEYIPROTO_TUPLEIPROTO_FUNCTION_NAMEIPROTO_USER_NAMEIPROTO_INSTANCE_UUIDIPROTO_REPLICASET_UUIDIPROTO_VCLOCKIPROTO_EXPRIPROTO_OPSIPROTO_BALLOTIPROTO_TUPLE_METAIPROTO_OPTIONSIPROTO_OLD_TUPLEIPROTO_NEW_TUPLEIPROTO_AFTER_POSITIONIPROTO_AFTER_TUPLEIPROTO_DATAIPROTO_ERROR_24IPROTO_METADATAIPROTO_BIND_METADATAIPROTO_BIND_COUNTIPROTO_POSITIONIPROTO_ARROWIPROTO_BEGIN_KEYIPROTO_END_KEY"
 	_Key_name_3 = "IPROTO_SQL_TEXTIPROTO_SQL_BINDIPROTO_SQL_INFOIPROTO_STMT_ID"
 	_Key_name_4 = "IPROTO_REPLICA_ANONIPROTO_ID_FILTERIPROTO_ERRORIPROTO_TERMIPROTO_VERSIONIPROTO_FEATURESIPROTO_TIMEOUTIPROTO_EVENT_KEYIPROTO_EVENT_DATAIPROTO_TXN_ISOLATIONIPROTO_VCLOCK_SYNCIPROTO_AUTH_TYPEIPROTO_REPLICASET_NAMEIPROTO_INSTANCE_NAMEIPROTO_SPACE_NAMEIPROTO_INDEX_NAMEIPROTO_TUPLE_FORMATSIPROTO_IS_SYNCIPROTO_IS_CHECKPOINT_JOINIPROTO_CHECKPOINT_VCLOCKIPROTO_CHECKPOINT_LSN"
 )
 
 var (
-	_Key_index_0 = [...]uint8{0, 19, 30, 47, 57, 73, 94, 115, 130, 140, 152, 168}
+	_Key_index_0 = [...]uint8{0, 19, 30, 47, 57, 73, 94, 115, 130, 140, 152, 168, 184, 204}
 	_Key_index_1 = [...]uint8{0, 15, 30, 42, 55, 70, 87}
-	_Key_index_2 = [...]uint16{0, 21, 31, 43, 63, 79, 99, 121, 134, 145, 155, 168, 185, 199, 215, 231, 252, 270, 281, 296, 311, 331, 348, 363, 375}
+	_Key_index_2 = [...]uint16{0, 21, 31, 43, 63, 79, 99, 121, 134, 145, 155, 168, 185, 199, 215, 231, 252, 270, 281, 296, 311, 331, 348, 363, 375, 391, 405}
 	_Key_index_3 = [...]uint8{0, 15, 30, 45, 59}
 	_Key_index_4 = [...]uint16{0, 19, 35, 47, 58, 72, 87, 101, 117, 134, 154, 172, 188, 210, 230, 247, 264, 284, 298, 323, 347, 368}
 )
 
 func (i Key) String() string {
 	switch {
-	case 0 <= i && i <= 10:
+	case 0 <= i && i <= 12:
 		return _Key_name_0[_Key_index_0[i]:_Key_index_0[i+1]]
 	case 16 <= i && i <= 21:
 		i -= 16
 		return _Key_name_1[_Key_index_1[i]:_Key_index_1[i+1]]
-	case 31 <= i && i <= 54:
+	case 31 <= i && i <= 56:
 		i -= 31
 		return _Key_name_2[_Key_index_2[i]:_Key_index_2[i+1]]
 	case 64 <= i && i <= 67:
@@ -129,10 +133,11 @@ const _MetadataKey_name = "IPROTO_FIELD_NAMEIPROTO_FIELD_TYPEIPROTO_FIELD_COLLIP
 var _MetadataKey_index = [...]uint8{0, 17, 34, 51, 75, 104, 121}
 
 func (i MetadataKey) String() string {
-	if i < 0 || i >= MetadataKey(len(_MetadataKey_index)-1) {
+	idx := int(i) - 0
+	if i < 0 || idx >= len(_MetadataKey_index)-1 {
 		return "MetadataKey(" + strconv.FormatInt(int64(i), 10) + ")"
 	}
-	return _MetadataKey_name[_MetadataKey_index[i]:_MetadataKey_index[i+1]]
+	return _MetadataKey_name[_MetadataKey_index[idx]:_MetadataKey_index[idx+1]]
 }
 func _() {
 	// An "invalid array index" compiler error signifies that the constant values have changed.
@@ -155,11 +160,11 @@ const _BallotKey_name = "IPROTO_BALLOT_IS_RO_CFGIPROTO_BALLOT_VCLOCKIPROTO_BALLO
 var _BallotKey_index = [...]uint8{0, 23, 43, 66, 85, 106, 129, 151, 186, 224, 251}
 
 func (i BallotKey) String() string {
-	i -= 1
-	if i < 0 || i >= BallotKey(len(_BallotKey_index)-1) {
-		return "BallotKey(" + strconv.FormatInt(int64(i+1), 10) + ")"
+	idx := int(i) - 1
+	if i < 1 || idx >= len(_BallotKey_index)-1 {
+		return "BallotKey(" + strconv.FormatInt(int64(i), 10) + ")"
 	}
-	return _BallotKey_name[_BallotKey_index[i]:_BallotKey_index[i+1]]
+	return _BallotKey_name[_BallotKey_index[idx]:_BallotKey_index[idx+1]]
 }
 func _() {
 	// An "invalid array index" compiler error signifies that the constant values have changed.
@@ -178,10 +183,11 @@ const _RaftKey_name = "IPROTO_RAFT_TERMIPROTO_RAFT_VOTEIPROTO_RAFT_STATEIPROTO_R
 var _RaftKey_index = [...]uint8{0, 16, 32, 49, 67, 88, 114}
 
 func (i RaftKey) String() string {
-	if i < 0 || i >= RaftKey(len(_RaftKey_index)-1) {
+	idx := int(i) - 0
+	if i < 0 || idx >= len(_RaftKey_index)-1 {
 		return "RaftKey(" + strconv.FormatInt(int64(i), 10) + ")"
 	}
-	return _RaftKey_name[_RaftKey_index[i]:_RaftKey_index[i+1]]
+	return _RaftKey_name[_RaftKey_index[idx]:_RaftKey_index[idx+1]]
 }
 func _() {
 	// An "invalid array index" compiler error signifies that the constant values have changed.
@@ -196,8 +202,9 @@ const _SqlInfoKey_name = "SQL_INFO_ROW_COUNTSQL_INFO_AUTOINCREMENT_IDS"
 var _SqlInfoKey_index = [...]uint8{0, 18, 44}
 
 func (i SqlInfoKey) String() string {
-	if i < 0 || i >= SqlInfoKey(len(_SqlInfoKey_index)-1) {
+	idx := int(i) - 0
+	if i < 0 || idx >= len(_SqlInfoKey_index)-1 {
 		return "SqlInfoKey(" + strconv.FormatInt(int64(i), 10) + ")"
 	}
-	return _SqlInfoKey_name[_SqlInfoKey_index[i]:_SqlInfoKey_index[i+1]]
+	return _SqlInfoKey_name[_SqlInfoKey_index[idx]:_SqlInfoKey_index[idx+1]]
 }
